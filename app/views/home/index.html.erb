@@ -1,0 +1,31 @@
+<%= form_for(@response_set) do |f| %>
+	<%= f.hidden_field 'survey_id', value: @survey.id %>
+	<% @questions.each_with_index do |question, index| %>
+		<div class="row"> 
+			<div class="input-field col s12 m12 l12  login-text">
+				<label><%= index + 1 %>.  <%= question.text %></label>
+				<%= f.hidden_field "#{question.id}", value: '', id: "response_#{question.id}" %>
+				</div>
+		</div>
+		<div class="row">
+			<% question.answers.each do |answer| %>
+				<div class="input-field col s12 m12 l12  login-text">
+					<p>
+			      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" />
+			      <label for="<%= answer.id %>"><%= answer.text %></label>
+			    </p>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+	<%= f.submit 'Submit Survey', class: "btn btn-large" %>
+<% end %>
+
+<script>
+	$(".response").click(function(){
+		var name = $(this).attr('name');
+		if($(this).val() == "on"){
+			$("#response_" + name).val(this.id);	
+		}
+	});
+</script>
