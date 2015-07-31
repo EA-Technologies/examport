@@ -13,7 +13,7 @@
         <% @response_set.responses.each do |response| %>
           <tr>
             <td><%= response.question.text %></td>
-            <td><%= response %></td>
+            <td><%= response.answer.text unless response.answer.nil? %></td>
             <td><%#= link_to "Check Test", response_set_path(response), class: "btn red" %></td>
           </tr>
         <% end %>

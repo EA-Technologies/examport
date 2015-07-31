@@ -1,32 +1,66 @@
-<%= form_for(@response_set) do |f| %>
-	<%= f.hidden_field 'survey_id', value: @survey.id %>
-	<% @questions.each_with_index do |question, index| %>
-		<div class="row"> 
-			<div class="input-field col s12 m12 l12  login-text">
-				<label><%= index + 1 %>.  <%= question.text %></label>
-				<%= f.hidden_field "#{question.id}", value: '', id: "response_#{question.id}" %>
+<div class="row">
+  <ul class="tabs">
+		<% @questions.each_with_index do |question, index| %>
+	    <li class="tab col s2">
+	    	<a href="#question<%= index %>" class="question<%= index %>">Question <%= index + 1 %></a>
+	    </li>
+		<% end %>
+	</ul>
+	<%= form_for(@response_set) do |f| %>
+		<%= f.hidden_field 'survey_id', value: @survey.id %>
+		<% @questions.each_with_index do |question, index| %>
+	    <div id="question<%= index %>" class="col s12">
+				<div class="row"> 
+					<div class="input-field col s12 m12 l12  login-text">
+						<label><%= index + 1 %>.  <%= question.text %></label>
+						<%= f.hidden_field "#{question.id}", value: '', id: "response_#{question.id}" %>
+						</div>
 				</div>
-		</div>
-		<div class="row">
-			<% question.answers.each do |answer| %>
-				<div class="input-field col s12 m12 l12  login-text">
-					<p>
-			      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" />
-			      <label for="<%= answer.id %>"><%= answer.text %></label>
-			    </p>
+				<div class="row">
+					<% question.answers.each do |answer| %>
+						<div class="input-field col s12 m12 l12  login-text">
+							<p>
+					      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" />
+					      <label for="<%= answer.id %>"><%= answer.text %></label>
+					    </p>
+						</div>
+					<% end %>
 				</div>
-			<% end %>
-		</div>
+				<div class="row navigation">
+					<% if index > 0 %>
+						<div class="col s3">
+							<a href="#" class="btn navigate" id="<%= index - 1 %>">Previous</a>
+						</div>
+					<% end %>
+					<% unless question == @questions.last %>
+						<div class="col s3 right">
+							<a href="#" id="<%= index + 1 %>" class="btn navigate">Next</a>
+						</div>
+					<% else %>
+						<div class="col s3 right">
+							<%= f.submit 'Submit Survey', class: "btn submit" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
 	<% end %>
-	<br>
-	<%= f.submit 'Submit Survey', class: "btn btn-large" %>
-<% end %>
-
+</div>
 <script>
 	$(".response").click(function(){
 		var name = $(this).attr('name');
 		if($(this).val() == "on"){
 			$("#response_" + name).val(this.id);	
 		}
+	});
+	
+	$('ul.tabs').tabs();
+
+	$('ul.tabs').hide();
+
+	$(".navigation .navigate").click(function(){
+		var tabId = this.id;
+		console.log(".question" + tabId);
+		$(".question" + tabId).click();
 	});
 </script>

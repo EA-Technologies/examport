@@ -2,39 +2,42 @@
 <html>
 	<head>
 	  <title>Exam</title>
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
           
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
  	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	  <%= csrf_meta_tags %>
 
 	</head>
 	 <body>
-	  <div class="container z-depth-2 white">
-		 	<nav>
-		    <div class="nav-wrapper">
+	 	<header>
+		 	<nav class=>
+		    <div class="nav-wrapper indigo darken-4">
 		      <%= image_tag("ea-logo.png", :alt => "rss feed", style: "padding-top: 4px; padding-left: 5px;", size: "200x60") %>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
 	      	  <% if current_user && current_user.email == "admin@admin.com" %>
-		        	<li style="margin-top: 20px;"><%= link_to "CHECK TEST", response_sets_path %></li>
+		        	<li><%= link_to "CHECK TEST", response_sets_path %></li>
 		        <% end %>
 		        <% if current_user %>
-		        	<li style="margin-top: 20px;"><%= link_to "SIGNOUT", destroy_session_path(current_user), method: :delete %></li>
+		        	<li><%= link_to "SIGNOUT", destroy_session_path(current_user), method: :delete %></li>
 		        <% end %>
 		      </ul>
 		    </div>
 		  </nav>
-		  <div class="content" style= "padding: 20px;">
-				<%= yield %>    
-		  </div>
-
-      <footer class="page-footer">
-        <div class="footer-copyright">
-        	© 2015 Copyright Text
-        </div>
-      </footer>
-	  </div>
+	 	</header>
+	 	<main>
+		  <div class="container z-depth-2 white">
+			  <div class="content">
+					<%= yield %>    
+			  </div>
+	 		</div>
+	 	</main>
+    <footer class="page-footer indigo darken-4">
+      <div class="footer-copyright center">
+      	© 2015 Copyright EA Technologies
+      </div>
+    </footer>
 	</body>
 </html>

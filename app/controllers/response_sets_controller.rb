@@ -29,7 +29,7 @@ class ResponseSetsController < ApplicationController
     params[:response_set].each do |question, answer|
       unless(question == "survey_id")
         response = @response_set.responses.build(question_id: question, answer_id: answer)
-        response.save!
+        response.save(validate: false)
       end
     end
     
