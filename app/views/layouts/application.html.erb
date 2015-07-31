@@ -17,6 +17,9 @@
 		    <div class="nav-wrapper">
 		      <%= image_tag("ea-logo.png", :alt => "rss feed", style: "padding-top: 4px; padding-left: 5px;", size: "200x60") %>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+	      	  <% if current_user && current_user.email == "admin@admin.com" %>
+		        	<li style="margin-top: 20px;"><%= link_to "CHECK TEST", response_sets_path %></li>
+		        <% end %>
 		        <% if current_user %>
 		        	<li style="margin-top: 20px;"><%= link_to "SIGNOUT", destroy_session_path(current_user), method: :delete %></li>
 		        <% end %>

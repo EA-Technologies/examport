@@ -1,1 +1,25 @@
-<h2 style= "font-size: 25px;">Thank you for your response.</h2>
+
+<div class="row">
+  <div class="col s12">
+    <table class="bordered">
+      <thead>
+        <tr>
+            <th data-field="id">Question</th>
+            <th data-field="name">Given Answer</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @response_set.responses.each do |response| %>
+          <tr>
+            <td><%= response.question.text %></td>
+            <td><%= response %></td>
+            <td><%#= link_to "Check Test", response_set_path(response), class: "btn red" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br />
+    <%= link_to "Back", response_sets_path, class: "btn blue" %>
+  </div>
+</div>        

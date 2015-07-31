@@ -4,7 +4,7 @@ class ResponseSetsController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    @responses = ResponseSet.all
   end
 
   # GET /surveys/1
@@ -26,13 +26,15 @@ class ResponseSetsController < ApplicationController
   def create
     @response_set = ResponseSet.create(user: current_user, survey_id: params[:response_set][:survey_id]
 ) 
-    @responses = params[:response_set].shift
-    @responses.each do |question, answer|
-      response = @response_set.responses.build(question_id: question, answer_id: answer)
-      response.save
+    params[:response_set].each do |question, answer|
+      unless(question == "survey_id")
+        response = @response_set.responses.build(question_id: question, answer_id: answer)
+        response.save!
+      end
     end
     
-    redirect_to response_set_path(@response_set)
+    redirect_to home_show_path
+    # redirect_to response_set_path(@response_set)
   end
 
   # PATCH/PUT /surveys/1
@@ -62,7 +64,7 @@ class ResponseSetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_response_set
-      @survey = ResponseSet.find(params[:id])
+      @response_set = ResponseSet.find(params[:id])
     end
 
 end
