@@ -17,9 +17,16 @@
 
 .content{
 	padding: 20px;
-	min-height: 449px;
+	min-height: 489px;
+}
+
+body {
+	display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main{
+	flex: 1 0 auto;
 	padding: 20px;
 }
