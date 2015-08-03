@@ -1,6 +1,6 @@
 class ResponseSetsController < ApplicationController
   before_action :set_response_set, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /surveys
   # GET /surveys.json
   def index
@@ -51,12 +51,10 @@ class ResponseSetsController < ApplicationController
     end
   end
 
-  # DELETE /surveys/1
-  # DELETE /surveys/1.json
   def destroy
-    @survey.destroy
+    @response_set.destroy
     respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+      format.html { redirect_to response_sets_path, notice: 'Test was successfully deleted.' }
       format.json { head :no_content }
     end
   end

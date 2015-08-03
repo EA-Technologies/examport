@@ -12,7 +12,8 @@
         <% @responses.each do |response| %>
           <tr>
             <td><%= response.user.email %></td>
-            <td><%= link_to "Check Test", response_set_path(response), class: "btn red" %></td>
+            <td><%= link_to "Check Test", response_set_path(response), class: "btn green" %></td>
+            <td><%= link_to "Delete Test", response, :method=>:delete, data: {:confirm => "Are you sure you want to delete this test."},  class: "btn red" %></td>
           </tr>
         <% end %>
       </tbody>
