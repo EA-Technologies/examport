@@ -20,6 +20,9 @@
 		      <ul id="nav-mobile" class="right" style="margin-top: 22px;">
 	      	  <% if current_user && current_user.email == "admin@admin.com" %>
 		        	<li><%= link_to "CHECK TEST", response_sets_path %></li>
+		        <% else %>
+
+		        
 		        <% end %>
 		        <% if current_user %>
 		        	<li><%= link_to "SIGNOUT", destroy_session_path(current_user), method: :delete %></li>

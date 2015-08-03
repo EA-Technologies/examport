@@ -17,11 +17,12 @@
 						</div>
 				</div>
 				<div class="row">
-					<% question.answers.each do |answer| %>
+					<% orderList = %w{a b c d e f g h i j} %>
+					<% question.answers.shuffle.each_with_index do |answer, ind| %>
 						<div class="input-field col s12 m12 l12  login-text">
 							<p>
 					      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" />
-					      <label for="<%= answer.id %>"><%= answer.text %></label>
+					      <label for="<%= answer.id %>"><strong>(<%= orderList[ind] %>)</strong>  <%= answer.text %></label>
 					    </p>
 						</div>
 					<% end %>

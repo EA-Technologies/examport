@@ -6,15 +6,21 @@
         <tr>
             <th data-field="id">Question</th>
             <th data-field="name">Given Answer</th>
+            <th data-field="name">Correct Answer</th>
         </tr>
       </thead>
 
       <tbody>
         <% @response_set.responses.each do |response| %>
-          <tr>
+        	<tr>
             <td><%= response.question.text %></td>
             <td><%= response.answer.text unless response.answer.nil? %></td>
+            <% correct = response.question.answers.where(is_correct: true).first %>
+            <td><%= correct.text %></td>
             <td><%#= link_to "Check Test", response_set_path(response), class: "btn red" %></td>
+          	<td>
+		          <%= (response.answer == correct) ? "Correct" : "Incorrect" %>
+          	</td>
           </tr>
         <% end %>
       </tbody>

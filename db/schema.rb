@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730111022) do
+ActiveRecord::Schema.define(version: 20150803124643) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150730111022) do
     t.string   "original_choice"
     t.boolean  "is_comment",             default: false
     t.integer  "column_id"
+    t.boolean  "is_correct",             default: false
   end
 
   add_index "answers", ["api_id"], name: "uq_answers_api_id", unique: true
