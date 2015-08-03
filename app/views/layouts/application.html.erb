@@ -17,7 +17,7 @@
 		 	<nav>
 		    <div class="nav-wrapper indigo darken-4">
 		      <%= image_tag("ea-logo.png", :alt => "rss feed", style: "padding-top: 4px; padding-left: 5px;", size: "200x60") %>
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		      <ul id="nav-mobile" class="right" style="margin-top: 22px;">
 	      	  <% if current_user && current_user.email == "admin@admin.com" %>
 		        	<li><%= link_to "CHECK TEST", response_sets_path %></li>
 		        <% end %>
