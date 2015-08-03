@@ -47,6 +47,9 @@
 	<% end %>
 </div>
 <script>
+	// $('ul.tabs').tabs();
+	$('ul.tabs').hide();
+
 	$(".response").click(function(){
 		var name = $(this).attr('name');
 		if($(this).val() == "on"){
@@ -54,9 +57,6 @@
 		}
 	});
 	
-	$('ul.tabs').tabs();
-
-	$('ul.tabs').hide();
 
 	$(".navigation .navigate").click(function(){
 		var tabId = this.id;
