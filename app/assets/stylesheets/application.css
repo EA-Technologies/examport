@@ -15,10 +15,7 @@
  */
  @import "materialize";
 
-.content{
-	padding: 20px;
-	min-height: 489px;
-}
+
 
 body {
 	display: flex;
@@ -26,7 +23,8 @@ body {
   flex-direction: column;
 }
 
-main{
+content{
 	flex: 1 0 auto;
 	padding: 20px;
+	min-height: 489px;
 }
