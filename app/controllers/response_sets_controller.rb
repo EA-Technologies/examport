@@ -5,6 +5,7 @@ class ResponseSetsController < ApplicationController
   # GET /surveys.json
   def index
     @responses = ResponseSet.all
+    @res = Response.all
   end
 
   # GET /surveys/1

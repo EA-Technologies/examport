@@ -9,8 +9,8 @@
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	  
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-		<script type="text/javascript" src="jquery.countdownTimer.js"></script>
-		<link rel="stylesheet" type="text/css" href="jquery.countdownTimer.css" />
+	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 	  <%= csrf_meta_tags %>
 
 	</head>
@@ -20,8 +20,10 @@
 		    <div class="nav-wrapper" style="background-color: #00838F">
 		      <div>
 		      <div style="float: left;"><%= image_tag("ea-logo.png", :alt => "rss feed", style: "padding-top: 4px; padding-left: 5px;", size: "200x60") %></div>
+		      <% if current_user %>
 		      <div style="float: left;padding-left: 30px;">Welcome <%= current_user.email %> </div>
-		      <% unless current_user.email == "admin@admin.com" %>
+		      <% end %>
+		      <% if current_user && current_user.email != "admin@admin.com" %>
 		      	<div style="float: left;padding-left: 30px;">
 		      		Test: T1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      	  	Date: <%= Date.today %>
@@ -60,8 +62,3 @@
     </footer>
 	</body>
 </html>
-
-<script>
-	
-
-</script>

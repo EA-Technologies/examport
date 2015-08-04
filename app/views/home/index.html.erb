@@ -39,7 +39,7 @@
 						</div>
 					<% else %>
 						<div class="col s3 right">
-							<%= f.submit 'Submit Test', class: "btn submit" %>
+							<%= f.submit 'Submit Test',id: "sub_test", class: "btn submit", data: {:confirm => "Are you sure you want to submit the test"} %>
 						</div>
 					<% end %>
 				</div>
@@ -74,9 +74,11 @@
 		});
 
 		function timeisUp() {
+			alert("your test time is over");
 			$('#test').submit();
     }
   });
+
 </script>
 
 <style>
