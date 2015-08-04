@@ -14,20 +14,30 @@
 	</head>
 	 <body style="display: flex; min-height: 100vh; flex-direction: column;">
 	 	<header>
-		 	<nav>
-		    <div class="nav-wrapper indigo darken-4">
-		      <%= image_tag("ea-logo.png", :alt => "rss feed", style: "padding-top: 4px; padding-left: 5px;", size: "200x60") %>
+		 	<nav >
+		    <div class="nav-wrapper" style="background-color: #00838F">
+		      <div>
+		      <div style="float: left;"><%= image_tag("ea-logo.png", :alt => "rss feed", style: "padding-top: 4px; padding-left: 5px;", size: "200x60") %></div>
+		      <div style="float: left;margin-top: 22px;padding-left: 30px;">Welcome <%= current_user.email %> </div>
+		      	<div style="float: left;margin-top: 22px;padding-left: 30px;">
+		      		Test: T1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      	  	Date: <%= Date.today %></div>
 		      <ul id="nav-mobile" class="right" style="margin-top: 22px;">
 	      	  <% if current_user && current_user.email == "admin@admin.com" %>
 		        	<li><%= link_to "CHECK TEST", response_sets_path %></li>
 		        <% else %>
-
-		        
+		        	<li style="display: inline;"> 
+				      	<div id="countdowntimer"><span>Remaining time:
+				      		<span id="ms_timer" style="background-color: #000;"></span>
+				      	</span>
+				      	</div>
+			      	</li>
 		        <% end %>
 		        <% if current_user %>
 		        	<li><%= link_to "SIGNOUT", destroy_session_path(current_user), method: :delete %></li>
 		        <% end %>
 		      </ul>
+		     </div>
 		    </div>
 		  </nav>
 	 	</header>
@@ -38,10 +48,15 @@
 			  </div>
 	 		</div>
 	 	</content>
-    <footer class="page-footer indigo darken-4">
+    <footer class="page-footer" style="background-color: #00838F">
       <div class="footer-copyright center">
       	© 2015 Copyright EA Technologies
       </div>
     </footer>
 	</body>
 </html>
+
+<script>
+	
+
+</script>

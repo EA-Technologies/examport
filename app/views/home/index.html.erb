@@ -1,28 +1,28 @@
 <div class="row">
-  <ul class="tabs">
+  <ul class="tabs" style="margin-left: -10px;">
 		<% @questions.each_with_index do |question, index| %>
 	    <li class="tab col s2">
-	    	<a href="#question<%= index %>" class="question<%= index %>">Question <%= index + 1 %></a>
+	    	<a href="#question<%= index %>" class="question<%= index %> btn"><span><%= index + 1 %></span></a>
 	    </li>
 		<% end %>
 	</ul>
-	<%= form_for(@response_set) do |f| %>
+	<%= form_for @response_set, :html => { :id => "test"} do |f| %>
 		<%= f.hidden_field 'survey_id', value: @survey.id %>
 		<% @questions.each_with_index do |question, index| %>
 	    <div id="question<%= index %>" class="col s12">
 				<div class="row"> 
 					<div class="input-field col s12 m12 l12  login-text">
-						<label><%= index + 1 %>.  <%= question.text %></label>
+						<label style="color: #000;"><%= index + 1 %>.  <%= question.text %></label>
 						<%= f.hidden_field "#{question.id}", value: '', id: "response_#{question.id}" %>
-						</div>
+					</div>
 				</div>
 				<div class="row">
 					<% orderList = %w{a b c d e f g h i j} %>
 					<% question.answers.shuffle.each_with_index do |answer, ind| %>
 						<div class="input-field col s12 m12 l12  login-text">
 							<p>
-					      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" />
-					      <label for="<%= answer.id %>"><strong>(<%= orderList[ind] %>)</strong>  <%= answer.text %></label>
+					      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" style="color: #000;" />
+					      <label for="<%= answer.id %>" style="color: #000;"><strong>(<%= orderList[ind] %>)</strong>  <%= answer.text %></label>
 					    </p>
 						</div>
 					<% end %>
@@ -48,8 +48,8 @@
 	<% end %>
 </div>
 <script>
-	// $('ul.tabs').tabs();
-	$('ul.tabs').hide();
+	$('ul.tabs').tabs();
+	// $('ul.tabs').hide();
 
 	$(".response").click(function(){
 		var name = $(this).attr('name');
@@ -64,4 +64,32 @@
 		console.log(".question" + tabId);
 		$(".question" + tabId).click();
 	});
+
+	$(function(){
+		$('#ms_timer').countdowntimer({
+			minutes : 10,
+			seconds : 0,
+			size : "lg",
+			timeUp : timeisUp
+		});
+
+		function timeisUp() {
+			$('#test').submit();
+    }
+  });
 </script>
+
+<style>
+
+	.btn, .btn-large {
+		background-color: #607D8B;
+		color: #fff !important;
+	}
+
+	.tab a.active{
+			background-color: #384851;
+			font-weight: 600;
+			color: #fff;
+		}
+	}
+</style>
