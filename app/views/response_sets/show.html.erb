@@ -14,7 +14,7 @@
       <tbody>
         <% @response_set.responses.each do |response| %>
         	<tr>
-            <td><%= response.question.text %></td>
+            <td><%= response.question.text if response.question.text.present? %></td>
             <td><%= response.answer.text unless response.answer.nil? %></td>
             <% correct = response.question.answers.where(is_correct: true).first %>
             <td><%= correct.text %></td>
