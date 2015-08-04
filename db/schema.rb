@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803124643) do
+ActiveRecord::Schema.define(version: 20150804081024) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(version: 20150803124643) do
     t.integer  "survey_version",         default: 0
     t.boolean  "template",               default: false
     t.integer  "user_id"
+    t.string   "test_name"
   end
 
   add_index "surveys", ["access_code", "survey_version"], name: "surveys_access_code_version_idx", unique: true
@@ -231,6 +232,8 @@ ActiveRecord::Schema.define(version: 20150803124643) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

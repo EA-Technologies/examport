@@ -1,6 +1,5 @@
 <div class="row">
   <div class="col s12">
-    <% count = 0 %>
     <table class="bordered">
       <thead>
         <tr>
@@ -16,6 +15,7 @@
 
       <tbody>
         <% @responses.each do |response| %>
+          <% count = 0 %>
           <tr>
             <td><%= response.user.email %></td>
             <td>T1</td>
