@@ -85,7 +85,7 @@ survey "Kitchen Sink survey", :default_mandatory => false do
     (1..4).to_a.each{|num| a num.to_s}
 
     q "How much do you like Ruby?", :pick => :one, :display_type => :slider
-    ["not at all", "a little", "some", "a lot", "a ton"].each{|level| a level}
+    ["a little", "some", "a lot", "a ton"].each{|level| a level}
 
     # The "|" pipe is used to place labels before or after the input elements
     q "How much money do you want?"
@@ -103,15 +103,13 @@ survey "Kitchen Sink survey", :default_mandatory => false do
     end
 
     q "Choose your Illinois county", :pick => :one, :display_type => :dropdown
-    ["Adams","Alexander","Bond", "Boone",
-        "Brown","Bureau"].each{ |county| a county}
+    ["Adams","Bond", "Boone",
+        "Bureau"].each{ |county| a county}
 
     # When an is_exclusive answer is checked, it unchecks all other options and disables them (using Javascript)
     q "Choose your favorite meats", :display_type => :inline, :pick => :one
     a "Chicken"
     a "Pork"
-    a "Beef"
-    a "Shellfish"
     a "Fish"
     a "I don't eat meats!!!", :is_exclusive => true
 
@@ -187,10 +185,7 @@ survey "Kitchen Sink survey", :default_mandatory => false do
       a "Toyota"
       a "Ford"
       a "GMChevy"
-      a "Ferrari"
-      a "Tesla"
       a "Honda"
-      a "Other weak brand"
       q "Model"
       a :string
       q "Year"

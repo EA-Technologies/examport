@@ -14,13 +14,12 @@
       <tbody>
         <% @response_set.responses.each do |response| %>
         	<tr>
-	        	<%# if response && response.question.present? && response.question.text.present? %>
-	            <%#= response.question.text %>
-	          <%# end %>
-            <td><%#= response.answer.text unless response.answer.nil? %></td>
+	        	<% if response && response.question.present? && response.question.text.present? %>
+	            <td><%= response.question.text %></td>
+	          <% end %>
+            <td><%= response.answer.text unless response.answer.nil? %></td>
             <% correct = response.question.answers.where(is_correct: true).first %>
             <td><%= correct.text %></td>
-            <!-- <td><%#= link_to "Check Test", response_set_path(response), class: "btn red" %></td> -->
           	<td>
 		          <%= (response.answer == correct) ? "Correct" : "Incorrect" %>
           	</td>
