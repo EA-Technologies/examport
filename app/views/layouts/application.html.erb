@@ -16,37 +16,35 @@
 	</head>
 	 <body style="display: flex; min-height: 100vh; flex-direction: column;">
 	 	<header>
-		 	<nav >
-		    <div class="nav-wrapper" style="background-color: #00838F">
-		      <div>
-		      <div style="float: left;"><%= image_tag("ea-logo.png", :alt => "rss feed", style: "padding-top: 4px; padding-left: 5px;", size: "200x60") %></div>
-		      <% if current_user %>
-		      <div style="float: left;padding-left: 30px;">Welcome <%= current_user.email %> </div>
-		      <% end %>
-		      <% if current_user && current_user.email != "admin@admin.com" %>
-		      	<div style="float: left;padding-left: 30px;">
-		      		Test: T1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	      	  	Date: <%= Date.today %>
-	      	  </div>
-	      	<% end %>
-		      <ul id="nav-mobile" class="right" style="margin-top: 22px;">
-	      	  <% if current_user && current_user.email == "admin@admin.com" %>
-		        	<li><%= link_to "CHECK TEST", response_sets_path %></li>
-		        <% else %>
-		        	<li style="display: inline;"> 
-				      	<div id="countdowntimer"><span>Remaining time:
-				      		<span id="ms_timer" style="background-color: #000;"></span>
-				      	</span>
-				      	</div>
-			      	</li>
-		        <% end %>
-		        <% if current_user %>
-		        	<li><%= link_to "SIGNOUT", destroy_session_path(current_user), method: :delete %></li>
-		        <% end %>
+ 		  <nav>
+		    <div class="nav-wrapper cyan darken-3">
+		      <a href="#" class="brand-logo">
+		      	<%= image_tag("ea-logo.png", :alt => "Logo", size: "200x60") %>
+	      	</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+	        	<% if current_user && current_user.email == "admin@admin.com" %>
+		        	<li>
+		        		<%= link_to "CHECK TEST", response_sets_path %></li>
+		        	</li>
+		        	<% else %>
+	        			<li id="ms_timer" class="teal lighten-3 center black-text">
+		        	</li>
+	        	<% end %>
+		        <li>
+		        	<% if current_user %>
+		      			Welcome <%= current_user.email %>
+		      		<% end %>
+		      	</li>
+		      	<li>
+		        	<% if current_user %>
+		      			<%= link_to "Signout", destroy_user_session_path, method: :delete %>
+		      		<% end %>
+		      	</li>
 		      </ul>
-		     </div>
 		    </div>
 		  </nav>
+
+		 	
 	 	</header>
 	 	<content style="flex: 1 0 auto;	padding: 20px; min-height: 489px;">
 		  <div class="container z-depth-2 white" style="padding-left: 20px;">
@@ -55,7 +53,7 @@
 			  </div>
 	 		</div>
 	 	</content>
-    <footer class="page-footer" style="background-color: #00838F">
+    <footer class="page-footer cyan darken-3">
       <div class="footer-copyright center">
       	© 2015 Copyright EA Technologies
       </div>
