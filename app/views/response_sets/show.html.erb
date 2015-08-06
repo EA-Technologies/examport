@@ -17,11 +17,11 @@
 	        	<% if response && response.question.present? && response.question.text.present? %>
 	            <td><%= response.question.text %></td>
 	          <% end %>
-            <td><%= response.answer.text unless response.answer.nil? %></td>
+            <td><%= response.answer.text if response && response.answer.present? %></td>
             <% correct = response.question.answers.where(is_correct: true).first %>
             <td><%= correct.text %></td>
           	<td>
-		          <%= (response.answer == correct) ? "Correct" : "Incorrect" %>
+		          <%= (response && response.answer == correct) ? "Correct" : "Incorrect" %>
           	</td>
           </tr>
         <% end %>
