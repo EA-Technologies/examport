@@ -23,9 +23,9 @@
               <% end %>  
             </td>
             <% correct = response.question.answers.where(is_correct: true).first %>
-            <td><%= correct.text %></td>
+            <td><%= correct.text if correct.present? %></td>
           	<td>
-		          <%= (response && response.answer == correct) ? "Correct" : "Incorrect" %>
+		          <%= (response && correct && response.answer == correct) ? "Correct" : "Incorrect" %>
           	</td>
           </tr>
         <% end %>
