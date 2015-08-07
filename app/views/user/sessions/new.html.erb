@@ -1,9 +1,9 @@
-<div class="col s10 m10 offset-s1 offset-m1">
-  <h3>Log In</h3>
+<div class="col s10 m10 offset-s1 offset-m1" style="padding-top: 20px;">
+  <h4 class="padding-10">Log In</h4>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'login') do |f| %>
     <div class="row">
       <div class="field">
-        <%= f.label :email %><br />
+        <%= f.label :email, for: 'user_email' %><br />
         <%= f.email_field :email, autofocus: true %>
       </div>
     </div>
@@ -27,6 +27,4 @@
       </div>
     </div>
   <% end %>
-
-  <%= render "user/shared/links" %>
 </div>

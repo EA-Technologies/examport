@@ -9,49 +9,59 @@
 	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 	  <%= csrf_meta_tags %>
-
 	</head>
-	 <body style="display: flex; min-height: 100vh; flex-direction: column;">
+	<body>
 	 	<header>
  		  <nav>
 		    <div class="nav-wrapper cyan darken-3">
-		      <a href="#" class="brand-logo">
-		      	<%= image_tag("ea-logo.png", :alt => "Logo", size: "200x60") %>
-	      	</a>
-		      <ul id="nav-mobile" class="right">
-	        	<% if current_user && current_user.email == "admin@admin.com" %>
-		        	<li>
-		        		<%= link_to "CHECK TEST", response_sets_path %></li>
-		        	</li>
-		        	<% else %>
-	        			<li id="ms_timer" class="teal lighten-3 center black-text">
-		        	</li>
+          <div class="row">
+            <div class="col s4">
+              <a href="#" class="brand-logo">
+                <%= image_tag("ea-logo1.png", :alt => "Logo", class: 'responsive-img') %>
+              </a>
+            </div>
+            <% if current_user && current_user.email == "admin@admin.com" %>
+              <ul id="nav-mobile" class="col l11 s11">
+                <li class="right">
+                  <%= link_to "CHECK TEST", response_sets_path %></li>
+                </li>
+              </ul>
+              <ul id="nav-mobile" class="col s1 l1">
+                <li class="right">
+                  <%= link_to "Signout", destroy_user_session_path, method: :delete %>
+                </li>
+              </ul>
+            <% else %>
+              <% if current_user %>
+                <div class="col s8 right-align">
+                  <h6>Total Time : 10 minutes</h6>
+                  <h6>Remaining Time: <span id="ms_timer" class="yellow lighten-3 center black-text">
+                  </span></h6>
+                </div>
+                <div class="col s3 l2">
+                  <h6>Total Questions : <%= @questions.size %></h6>
+                  <h6>Remaining Questions: <span class="yellow lighten-3 center black-text" id="remaining_ques"><%= @questions.size %></span></h6>
+                </div>
+                <ul id="nav-mobile" class="col s1 l2">
+                  <li class="right">
+                    <%= link_to "Signout", destroy_user_session_path, method: :delete %>
+                  </li>
+                </ul>
+              <% end %>
 	        	<% end %>
-		        <li>
-		        	<% if current_user %>
-		      			Welcome <%= current_user.email %>
-		      		<% end %>
-		      	</li>
-		      	<li>
-		        	<% if current_user %>
-		      			<%= link_to "Signout", destroy_user_session_path, method: :delete %>
-		      		<% end %>
-		      	</li>
-		      </ul>
+          </div>
 		    </div>
 		  </nav>
-
-		 	
 	 	</header>
-	 	<content style="flex: 1 0 auto;	padding: 20px; min-height: 489px;">
-		  <div class="container z-depth-2 white" style="padding-left: 20px;">
-			  <div class="content row">
-					<%= yield %>    
-			  </div>
-	 		</div>
+	 	<content>
+		  <div class="container z-depth-2 white">
+        <div class="content row">
+  		  	<%= yield %>
+        </div>
+      </div>
 	 	</content>
     <footer class="page-footer cyan darken-3 center white-text">
-      	© 2015 Copyright EA Technologies
+      © 2015 Copyright EA Technologies
     </footer>
 	</body>
 </html>

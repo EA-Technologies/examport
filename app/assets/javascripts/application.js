@@ -15,3 +15,15 @@
 //= require jquery.countdownTimer
 //= require jquery_ujs
 //= require turbolinks
+
+$(document).ready(function(){
+  $(".button-collapse").sideNav();
+
+
+  $("#new_response_set :radio:visible").click(function(){
+    $("a.next:visible").removeClass("blue-grey").addClass("orange");
+    setTimeout(function(){
+      $("a.next:visible").addClass("blue-grey").removeClass("orange");
+    }, 2000);
+  });
+});
