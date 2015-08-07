@@ -129,3 +129,9 @@ nav {
     }
   }
 }
+
+[type="checkbox"] + label::before {
+  width :15px;
+  height: 15px;
+  margin-top: 5px;
+}

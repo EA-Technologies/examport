@@ -26,4 +26,34 @@ $(document).ready(function(){
       $("a.next:visible").addClass("blue-grey").removeClass("orange");
     }, 2000);
   });
+
+  // $('form').validate({
+  //   rules: {
+  //     email: {
+  //       required: true,
+  //       email: true,
+  //       maxlength: 50
+  //     },
+  //     password: {
+  //       required: true
+  //     }
+  //   },
+    
+  //   messages: {
+  //     email: {
+  //       required: "Please fill out this field",
+  //       email: "Please enter a valid email address"
+  //     },
+  //     password: {
+  //       required: "Please fill out this field"
+  //     }
+  //   },
+  //   highlight: function (element) {
+  //     $(element).closest('.field').addClass('error');
+  //   },
+  //   success: function (element) {
+  //     $(element).closest('.field').removeClass('error');
+  //   }
+  // });
+
 });
