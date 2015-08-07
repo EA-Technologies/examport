@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require materialize-sprockets
+//= require jquery.countdownTimer
 //= require jquery_ujs
 //= require turbolinks
