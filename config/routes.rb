@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :user
 
   devise_scope :user do
-    root :to => 'devise/sessions#new'
+    root :to => 'user/sessions#new'
   end
 
   resources :response_sets
