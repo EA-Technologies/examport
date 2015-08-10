@@ -80,7 +80,7 @@ img.responsive-img{
 }
 
 .tabs{
-  .tab a.active{
+  .tab a.blue-grey.active{
     background-color: #4fc3f7!important;
     font-weight: 600;
     color: #fff;
@@ -93,7 +93,13 @@ img.responsive-img{
     margin-bottom: 2px;
     width: 9.5%!important;
   }
-  
+
+  .tab a.orange.active{
+    background-color: #e65100!important;
+    font-weight: 600;
+    color: #fff;
+    border-bottom: 3px solid #4a148c;
+  }
 }
 
 ul.tabs{

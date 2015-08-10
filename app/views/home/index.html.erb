@@ -19,12 +19,13 @@
 	  <ul class="tabs">
 			<% @questions.each_with_index do |question, index| %>
 		    <li class="tab">
-		    	<a href="#question<%= index %>" class="blue-grey white-text question<%= index %>"><span><%= index + 1 %></span></a>
+		    	<a href="#question<%= index %>" class="blue-grey white-text question<%= index %>" id="<%= question.id %>"><span><%= index + 1 %></span></a>
 		    </li>
 			<% end %>
 		</ul>
 		<%= form_for @response_set do |f| %>
 			<%= f.hidden_field 'survey_id', value: @survey.id %>
+			<%= f.hidden_field 'responded', value: [] %>
 			<% @questions.each_with_index do |question, index| %>
 		    <div id="question<%= index %>">
 					<div class="row"> 
@@ -76,9 +77,22 @@
 
 	$(".navigation .navigate").click(function(){
 		var tabId = this.id;
-		console.log(".question" + tabId);
 		$(".question" + tabId).click();
 	});
+	
+	var responded = [];
+	$("#new_response_set :radio").click(function(){
+		if(this.checked){
+			console.log($("ul#tabs a#" + this.name));
+			if($.inArray( this.name, responded) < 0){
+				$("ul.tabs a#" + this.name).removeClass('blue-grey').addClass('orange');
+			}else{
+				$("ul.tabs a#" + this.name).removeClass('orange').addClass('blue-grey');
+			}
+		}
+		$("#response_set_responded").val(responded);
+	});
+
 
 	$(function(){
 		$('#ms_timer').countdowntimer({
@@ -90,7 +104,7 @@
 
 		function timeisUp() {
 			alert("your test time is over");
-			$('#test').submit();
+			$('#new_response_set').submit();
     }
   });
 
