@@ -103,9 +103,20 @@ ul.tabs{
 }
 
 .navigation{
-  position: fixed; 
-  bottom: 80px; 
-  width: 88%;
+  @media #{$small-and-down}{
+    position: relative;
+    width: 100%;
+  }
+  @media #{$medium-and-up}{
+    position: fixed; 
+    bottom: 80px; 
+    width: 88%;
+  }
+  @media #{$medium-and-down}{
+    position: relative;
+    bottom: 0; 
+    width: 100%;
+  }
 }
 
 .display{
