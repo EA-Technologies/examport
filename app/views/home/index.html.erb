@@ -1,0 +1,97 @@
+<div class="row">
+	<div class="col s12 hide-on-med-and-up">
+		<div class="card-panel hoverable">
+		  <h5>
+		  	<%= current_user.email %>
+		  </h5>    
+		</div>
+		<div class="card-panel hoverable">
+		  <h6>Total Time : 10 minutes</h6>
+		  <h6>Remaining Time: <span id="ms_timer" class="teal lighten-3 center black-text">
+    	</span></h6>
+		</div>
+		<div class="card-panel hoverable">
+		  <h6>Total Questions : <%= @questions.size %></h6>
+		  <h6>Remaining Questions: <span id="remaining_ques"><%= @questions.size %></span></h6>
+		</div>
+	</div>
+	<div class="col s12 m12">
+	  <ul class="tabs">
+			<% @questions.each_with_index do |question, index| %>
+		    <li class="tab">
+		    	<a href="#question<%= index %>" class="blue-grey white-text question<%= index %>"><span><%= index + 1 %></span></a>
+		    </li>
+			<% end %>
+		</ul>
+		<%= form_for @response_set do |f| %>
+			<%= f.hidden_field 'survey_id', value: @survey.id %>
+			<% @questions.each_with_index do |question, index| %>
+		    <div id="question<%= index %>">
+					<div class="row"> 
+						<div class="display">
+							<label class="black-text"><%= index + 1 %>.  <%= question.text %></label>
+							<%= f.hidden_field "#{question.id}", value: '', id: "response_#{question.id}" %>
+						</div>
+					</div>
+					<div class="row">
+						<% orderList = %w{a b c d e f g h i j} %>
+						<% question.answers.shuffle.each_with_index do |answer, ind| %>
+							<div>
+								<p>
+						      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" style="color: #000;" />
+						      <label for="<%= answer.id %>" style="color: #000;"><strong>(<%= orderList[ind] %>)</strong>  <%= answer.text %></label>
+						    </p>
+							</div>
+						<% end %>
+					</div>
+					<div class="row navigation">
+						<div class="col s6 m6">
+							<a href="#" class="btn navigate previous blue-grey <%= (index > 0) ? '' : 'disabled' %>" id="<%= index - 1 %>">Previous</a>
+						</div>
+						<div class="col s6 m6 right-align">
+							<% unless question == @questions.last %>
+								<a href="#" id="<%= index + 1 %>" class="btn navigate blue-grey next">Next</a>
+							<% else %>
+								<%= f.submit 'Submit Test',id: "sub_test", class: "btn btn-large green submit", data: {:confirm => "Are you sure you want to submit the test"} %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+
+</div>
+<script>
+	$('ul.tabs').tabs();
+	// $('ul.tabs').hide();
+
+	$(".response").click(function(){
+		var name = $(this).attr('name');
+		if($(this).val() == "on"){
+			$("#response_" + name).val(this.id);	
+		}
+	});
+	
+
+	$(".navigation .navigate").click(function(){
+		var tabId = this.id;
+		console.log(".question" + tabId);
+		$(".question" + tabId).click();
+	});
+
+	$(function(){
+		$('#ms_timer').countdowntimer({
+			minutes : 10,
+			seconds : 0,
+			size : "lg",
+			timeUp : timeisUp
+		});
+
+		function timeisUp() {
+			alert("your test time is over");
+			$('#test').submit();
+    }
+  });
+
+</script>

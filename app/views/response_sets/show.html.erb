@@ -1,0 +1,38 @@
+
+<div class="row">
+  <div class="col s12" style="padding-bottom: 20px;">
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th data-field="id">Question</th>
+          <th data-field="name">Given Answer</th>
+          <th data-field="name">Correct Answer</th>
+          <th data-field="name">Result</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @response_set.responses.each do |response| %>
+        	<tr>
+	        	<% if response && response.question.present? && response.question.text.present? %>
+	            <td><%= response.question.text %></td>
+	          <% end %>
+            <td>
+              <% if response && response.answer.present? %>
+                <%= response.answer.text %>
+              <% end %>  
+            </td>
+            <% correct = response.question.answers.where(is_correct: true).first %>
+            <td><%= correct.text if correct.present? %></td>
+          	<td>
+		          <%= (response && correct && response.answer == correct) ? "Correct" : "Incorrect" %>
+          	</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br />
+    <%= link_to "Back", response_sets_path, class: "btn blue" %><br />
+  </div>
+    <br /><br />
+</div>        

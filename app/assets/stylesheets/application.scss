@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+// Mixins
+@import "materialize/components/prefixer";
+@import "materialize/components/mixins";
+@import "materialize/components/color";
+
+// Variables;
+@import "materialize/components/variables";
+
+// Reset
+@import "materialize/components/normalize";
+
+// materialize/components
+@import "materialize/components/global";
+@import "materialize/components/icons-material-design";
+@import "materialize/components/grid";
+@import "materialize/components/navbar";
+@import "materialize/components/roboto";
+@import "materialize/components/typography";
+@import "materialize/components/cards";
+@import "materialize/components/toast";
+@import "materialize/components/tabs";
+@import "materialize/components/tooltip";
+@import "materialize/components/buttons";
+@import "materialize/components/dropdown";
+@import "materialize/components/waves";
+@import "materialize/components/modal";
+@import "materialize/components/collapsible";
+@import "materialize/components/materialbox";
+@import "materialize/components/form";
+@import "materialize/components/table_of_contents";
+@import "materialize/components/sideNav";
+@import "materialize/components/preloader";
+@import "materialize/components/slider";
+@import "materialize/components/date_picker/default.scss";
+@import "materialize/components/date_picker/default.date.scss";
+@import "materialize/components/date_picker/default.time.scss";
+
+.content {
+  min-height: 474px;
+  margin-top: 20px;
+  bottom: 0; 
+}
+
+.container{
+  width: 90%;
+
+  .row {
+    margin-left: 0!important;
+    margin-right: 0!important;
+  }
+}
+
+.login{
+  padding: 30px;
+}
+
+.padding-10{
+  padding-top:10px;
+  padding-bottom: 10px;
+}
+
+label{
+  font-size: 1rem!important;
+}
+
+#ms_timer{
+  min-width: 100px;
+}
+
+footer{
+  height: 60px;
+}
+
+img.responsive-img{
+  max-width: 75%;
+  height: 56px;
+  left: 10px;
+}
+
+.tabs{
+  .tab a.active{
+    background-color: #4fc3f7!important;
+    font-weight: 600;
+    color: #fff;
+    border-bottom: 3px solid #4a148c;
+  }
+  
+  .tab{
+    margin-right: 0.25%;
+    margin-left: 0.25%;
+    margin-bottom: 2px;
+    width: 9.5%!important;
+  }
+  
+}
+
+ul.tabs{
+  .indicator{
+    display: none!important;
+  }
+}
+
+.navigation{
+  position: fixed; 
+  bottom: 80px; 
+  width: 88%;
+}
+
+.display{
+  padding: 20px 0 20px 5px;
+}
+
+.hoverable{
+  word-wrap: break-word;
+}
+
+nav {
+  .brand-logo{
+    @media #{$small-and-down}{
+      display: none;
+    }
+    @media #{$medium-and-up}{
+      left: 0%;
+    }
+    @media #{$medium-and-down}{
+      left: 22%;
+    }
+  }
+}
+
+[type="checkbox"] + label::before {
+  width :15px;
+  height: 15px;
+  margin-top: 5px;
+}
