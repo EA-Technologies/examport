@@ -29,6 +29,9 @@ gem "surveyor", :github => "NUBIC/surveyor", :branch => "master"
 gem 'surveyor_gui'
 gem 'devise'
 gem 'materialize-sass'
+
+gem 'wicked_pdf', '~> 0.11.0'
+gem 'wkhtmltopdf-binary'
 # gem "formtastic"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

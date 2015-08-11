@@ -12,14 +12,14 @@ class ResponseSetsController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-    @responses = @response_set.responses
     respond_to do |format|
       format.html
-      format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"results-list\""
-        headers['Content-Type'] ||= 'text/csv'
+      format.pdf do
+        render pdf: "result",
+               template: 'response_sets/show.pdf.erb'
       end
     end
+
   end
 
   # GET /surveys/new

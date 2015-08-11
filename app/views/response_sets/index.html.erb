@@ -40,12 +40,10 @@
             <td><%= response.started_at.strftime("%m-%d-%Y") %></td>
             <td><i class="material-icons">mail</i></td>
             <td><%= link_to "Check Test", response_set_path(response), class: "btn  light-green darken-3 " %></td>
-            <td><%= link_to "Delete Test", response, :method=>:delete, data: {:confirm => "Are you sure you want to delete this test."},  class: "btn red lighten-1" %></td>
             <td>
               <p>
                 Download:
-                <%= link_to "CSV", response_set_path(response, format: "csv") %> |
-                <%#= link_to "Excel", response_set_path(response, format: "xls") %>
+                <%= link_to "PDF", response_set_path(response, format: "pdf") %>
               </p>
             </td>
           </tr>
