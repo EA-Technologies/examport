@@ -1,4 +1,3 @@
-require 'csv'
 class ResponseSetsController < ApplicationController
   before_action :set_response_set, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
