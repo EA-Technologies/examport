@@ -38,7 +38,7 @@ $(document).ready(function(){
   //       required: true
   //     }
   //   },
-    
+
   //   messages: {
   //     email: {
   //       required: "Please fill out this field",
@@ -56,4 +56,12 @@ $(document).ready(function(){
   //   }
   // });
 
+  function animateOnScroll(){
+    $("#new_response_set :radio:visible").click(function(){
+      $("a.next:visible").removeClass("blue-grey").addClass("orange");
+      setTimeout(function(){
+        $("a.next:visible").addClass("blue-grey").removeClass("orange");
+      }, 2000);
+    });
+  }
 });

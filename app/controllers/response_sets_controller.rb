@@ -11,6 +11,13 @@ class ResponseSetsController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "result",
+               template: 'response_sets/show.pdf.erb'
+      end
+    end
   end
 
   # GET /surveys/new
@@ -26,14 +33,14 @@ class ResponseSetsController < ApplicationController
   # POST /surveys.json
   def create
     @response_set = ResponseSet.create(user: current_user, survey_id: params[:response_set][:survey_id]
-) 
+)
     params[:response_set].each do |question, answer|
       unless(question == "survey_id")
         response = @response_set.responses.build(question_id: question, answer_id: answer)
         response.save(validate: false)
       end
     end
-    
+
     redirect_to home_show_path
     # redirect_to response_set_path(@response_set)
   end

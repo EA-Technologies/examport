@@ -40,7 +40,7 @@
 .content {
   min-height: 474px;
   margin-top: 20px;
-  bottom: 0; 
+  bottom: 0;
 }
 
 .container{
@@ -86,7 +86,7 @@ img.responsive-img{
     color: #fff;
     border-bottom: 3px solid #4a148c;
   }
-  
+
   .tab{
     margin-right: 0.25%;
     margin-left: 0.25%;
@@ -114,13 +114,13 @@ ul.tabs{
     width: 100%;
   }
   @media #{$medium-and-up}{
-    position: fixed; 
-    bottom: 80px; 
+    position: fixed;
+    bottom: 80px;
     width: 88%;
   }
   @media #{$medium-and-down}{
     position: relative;
-    bottom: 0; 
+    bottom: 0;
     width: 100%;
   }
 }

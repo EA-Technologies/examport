@@ -3,7 +3,7 @@
 		<div class="card-panel hoverable">
 		  <h5>
 		  	<%= current_user.email %>
-		  </h5>    
+		  </h5>
 		</div>
 		<div class="card-panel hoverable">
 		  <h6>Total Time : 10 minutes</h6>
@@ -28,7 +28,7 @@
 			<%= f.hidden_field 'responded', value: [] %>
 			<% @questions.each_with_index do |question, index| %>
 		    <div id="question<%= index %>">
-					<div class="row"> 
+					<div class="row">
 						<div class="display">
 							<label class="black-text"><%= index + 1 %>.  <%= question.text %></label>
 							<%= f.hidden_field "#{question.id}", value: '', id: "response_#{question.id}" %>
@@ -70,16 +70,16 @@
 	$(".response").click(function(){
 		var name = $(this).attr('name');
 		if($(this).val() == "on"){
-			$("#response_" + name).val(this.id);	
+			$("#response_" + name).val(this.id);
 		}
 	});
-	
+
 
 	$(".navigation .navigate").click(function(){
 		var tabId = this.id;
 		$(".question" + tabId).click();
 	});
-	
+
 	var responded = [];
 	$("#new_response_set :radio").click(function(){
 		if(this.checked){
