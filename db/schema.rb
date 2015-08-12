@@ -14,260 +14,260 @@
 ActiveRecord::Schema.define(version: 20150812050105) do
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "question_id",            limit: 4
-    t.text     "text",                   limit: 65535
-    t.text     "short_text",             limit: 65535
-    t.text     "help_text",              limit: 65535
-    t.integer  "weight",                 limit: 4
-    t.string   "response_class",         limit: 255
-    t.string   "reference_identifier",   limit: 255
-    t.string   "data_export_identifier", limit: 255
-    t.string   "common_namespace",       limit: 255
-    t.string   "common_identifier",      limit: 255
-    t.integer  "display_order",          limit: 4
-    t.boolean  "is_exclusive",           limit: 1
-    t.integer  "display_length",         limit: 4
-    t.string   "custom_class",           limit: 255
-    t.string   "custom_renderer",        limit: 255
+    t.integer  "question_id"
+    t.text     "text"
+    t.text     "short_text"
+    t.text     "help_text"
+    t.integer  "weight"
+    t.string   "response_class"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.integer  "display_order"
+    t.boolean  "is_exclusive"
+    t.integer  "display_length"
+    t.string   "custom_class"
+    t.string   "custom_renderer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "default_value",          limit: 255
-    t.string   "api_id",                 limit: 255
-    t.string   "display_type",           limit: 255
-    t.string   "input_mask",             limit: 255
-    t.string   "input_mask_placeholder", limit: 255
-    t.string   "original_choice",        limit: 255
-    t.boolean  "is_comment",             limit: 1,     default: false
-    t.integer  "column_id",              limit: 4
-    t.boolean  "is_correct",             limit: 1,     default: false
+    t.string   "default_value"
+    t.string   "api_id"
+    t.string   "display_type"
+    t.string   "input_mask"
+    t.string   "input_mask_placeholder"
+    t.string   "original_choice"
+    t.boolean  "is_comment",             default: false
+    t.integer  "column_id"
+    t.boolean  "is_correct",             default: false
   end
 
-  add_index "answers", ["api_id"], name: "uq_answers_api_id", unique: true, using: :btree
+  add_index "answers", ["api_id"], name: "uq_answers_api_id", unique: true
 
   create_table "columns", force: :cascade do |t|
-    t.integer  "question_group_id", limit: 4
-    t.text     "text",              limit: 65535
-    t.text     "answers_textbox",   limit: 65535
+    t.integer  "question_group_id"
+    t.text     "text"
+    t.text     "answers_textbox"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "dependencies", force: :cascade do |t|
-    t.integer  "question_id",       limit: 4
-    t.integer  "question_group_id", limit: 4
-    t.string   "rule",              limit: 255
+    t.integer  "question_id"
+    t.integer  "question_group_id"
+    t.string   "rule"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "dependency_conditions", force: :cascade do |t|
-    t.integer  "dependency_id",  limit: 4
-    t.string   "rule_key",       limit: 255
-    t.integer  "question_id",    limit: 4
-    t.string   "operator",       limit: 255
-    t.integer  "answer_id",      limit: 4
+    t.integer  "dependency_id"
+    t.string   "rule_key"
+    t.integer  "question_id"
+    t.string   "operator"
+    t.integer  "answer_id"
     t.datetime "datetime_value"
-    t.integer  "integer_value",  limit: 4
-    t.float    "float_value",    limit: 24
-    t.string   "unit",           limit: 255
-    t.text     "text_value",     limit: 65535
-    t.string   "string_value",   limit: 255
-    t.string   "response_other", limit: 255
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.string   "unit"
+    t.text     "text_value"
+    t.string   "string_value"
+    t.string   "response_other"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "column_id",      limit: 4
+    t.integer  "column_id"
   end
 
   create_table "question_groups", force: :cascade do |t|
-    t.text     "text",                   limit: 65535
-    t.text     "help_text",              limit: 65535
-    t.string   "reference_identifier",   limit: 255
-    t.string   "data_export_identifier", limit: 255
-    t.string   "common_namespace",       limit: 255
-    t.string   "common_identifier",      limit: 255
-    t.string   "display_type",           limit: 255
-    t.string   "custom_class",           limit: 255
-    t.string   "custom_renderer",        limit: 255
+    t.text     "text"
+    t.text     "help_text"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.string   "display_type"
+    t.string   "custom_class"
+    t.string   "custom_renderer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "api_id",                 limit: 255
+    t.string   "api_id"
   end
 
-  add_index "question_groups", ["api_id"], name: "uq_question_groups_api_id", unique: true, using: :btree
+  add_index "question_groups", ["api_id"], name: "uq_question_groups_api_id", unique: true
 
   create_table "questions", force: :cascade do |t|
-    t.integer  "survey_section_id",      limit: 4
-    t.integer  "question_group_id",      limit: 4
-    t.text     "text",                   limit: 65535
-    t.text     "short_text",             limit: 65535
-    t.text     "help_text",              limit: 65535
-    t.string   "pick",                   limit: 255
-    t.string   "reference_identifier",   limit: 255
-    t.string   "data_export_identifier", limit: 255
-    t.string   "common_namespace",       limit: 255
-    t.string   "common_identifier",      limit: 255
-    t.integer  "display_order",          limit: 4
-    t.string   "display_type",           limit: 255
-    t.boolean  "is_mandatory",           limit: 1
-    t.integer  "display_width",          limit: 4
-    t.string   "custom_class",           limit: 255
-    t.string   "custom_renderer",        limit: 255
+    t.integer  "survey_section_id"
+    t.integer  "question_group_id"
+    t.text     "text"
+    t.text     "short_text"
+    t.text     "help_text"
+    t.string   "pick"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.integer  "display_order"
+    t.string   "display_type"
+    t.boolean  "is_mandatory"
+    t.integer  "display_width"
+    t.string   "custom_class"
+    t.string   "custom_renderer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "correct_answer_id",      limit: 4
-    t.string   "api_id",                 limit: 255
-    t.boolean  "modifiable",             limit: 1,     default: true
-    t.boolean  "dynamically_generate",   limit: 1,     default: false
-    t.string   "dummy_blob",             limit: 255
-    t.string   "dynamic_source",         limit: 255
-    t.string   "report_code",            limit: 255
-    t.boolean  "is_comment",             limit: 1,     default: false
+    t.integer  "correct_answer_id"
+    t.string   "api_id"
+    t.boolean  "modifiable",             default: true
+    t.boolean  "dynamically_generate",   default: false
+    t.string   "dummy_blob"
+    t.string   "dynamic_source"
+    t.string   "report_code"
+    t.boolean  "is_comment",             default: false
   end
 
-  add_index "questions", ["api_id"], name: "uq_questions_api_id", unique: true, using: :btree
+  add_index "questions", ["api_id"], name: "uq_questions_api_id", unique: true
 
   create_table "response_sets", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.integer  "survey_id",    limit: 4
-    t.string   "access_code",  limit: 255
+    t.integer  "user_id"
+    t.integer  "survey_id"
+    t.string   "access_code"
     t.datetime "started_at"
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "api_id",       limit: 255
-    t.boolean  "test_data",    limit: 1,   default: false
+    t.string   "api_id"
+    t.boolean  "test_data",    default: false
   end
 
-  add_index "response_sets", ["access_code"], name: "response_sets_ac_idx", unique: true, using: :btree
-  add_index "response_sets", ["api_id"], name: "uq_response_sets_api_id", unique: true, using: :btree
+  add_index "response_sets", ["access_code"], name: "response_sets_ac_idx", unique: true
+  add_index "response_sets", ["api_id"], name: "uq_response_sets_api_id", unique: true
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "response_set_id",   limit: 4
-    t.integer  "question_id",       limit: 4
-    t.integer  "answer_id",         limit: 4
+    t.integer  "response_set_id"
+    t.integer  "question_id"
+    t.integer  "answer_id"
     t.datetime "datetime_value"
-    t.integer  "integer_value",     limit: 4
-    t.float    "float_value",       limit: 24
-    t.string   "unit",              limit: 255
-    t.text     "text_value",        limit: 65535
-    t.string   "string_value",      limit: 255
-    t.string   "response_other",    limit: 255
-    t.string   "response_group",    limit: 255
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.string   "unit"
+    t.text     "text_value"
+    t.string   "string_value"
+    t.string   "response_other"
+    t.string   "response_group"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "survey_section_id", limit: 4
-    t.string   "api_id",            limit: 255
-    t.string   "blob",              limit: 255
-    t.integer  "column_id",         limit: 4
+    t.integer  "survey_section_id"
+    t.string   "api_id"
+    t.string   "blob"
+    t.integer  "column_id"
   end
 
-  add_index "responses", ["api_id"], name: "uq_responses_api_id", unique: true, using: :btree
-  add_index "responses", ["survey_section_id"], name: "index_responses_on_survey_section_id", using: :btree
+  add_index "responses", ["api_id"], name: "uq_responses_api_id", unique: true
+  add_index "responses", ["survey_section_id"], name: "index_responses_on_survey_section_id"
 
   create_table "rows", force: :cascade do |t|
-    t.integer  "question_group_id", limit: 4
-    t.string   "text",              limit: 255
+    t.integer  "question_group_id"
+    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "value",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "survey_sections", force: :cascade do |t|
-    t.integer  "survey_id",              limit: 4
-    t.string   "title",                  limit: 255
-    t.text     "description",            limit: 65535
-    t.string   "reference_identifier",   limit: 255
-    t.string   "data_export_identifier", limit: 255
-    t.string   "common_namespace",       limit: 255
-    t.string   "common_identifier",      limit: 255
-    t.integer  "display_order",          limit: 4
-    t.string   "custom_class",           limit: 255
+    t.integer  "survey_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.integer  "display_order"
+    t.string   "custom_class"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "modifiable",             limit: 1,     default: true
+    t.boolean  "modifiable",             default: true
   end
 
   create_table "survey_translations", force: :cascade do |t|
-    t.integer  "survey_id",   limit: 4
-    t.string   "locale",      limit: 255
-    t.text     "translation", limit: 65535
+    t.integer  "survey_id"
+    t.string   "locale"
+    t.text     "translation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "surveys", force: :cascade do |t|
-    t.string   "title",                  limit: 255
-    t.text     "description",            limit: 65535
-    t.string   "access_code",            limit: 255
-    t.string   "reference_identifier",   limit: 255
-    t.string   "data_export_identifier", limit: 255
-    t.string   "common_namespace",       limit: 255
-    t.string   "common_identifier",      limit: 255
+    t.string   "title"
+    t.text     "description"
+    t.string   "access_code"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
     t.datetime "active_at"
     t.datetime "inactive_at"
-    t.string   "css_url",                limit: 255
-    t.string   "custom_class",           limit: 255
+    t.string   "css_url"
+    t.string   "custom_class"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "display_order",          limit: 4
-    t.string   "api_id",                 limit: 255
-    t.integer  "survey_version",         limit: 4,     default: 0
-    t.boolean  "template",               limit: 1,     default: false
-    t.integer  "user_id",                limit: 4
-    t.string   "test_name",              limit: 255
+    t.integer  "display_order"
+    t.string   "api_id"
+    t.integer  "survey_version",         default: 0
+    t.boolean  "template",               default: false
+    t.integer  "user_id"
+    t.string   "test_name"
   end
 
-  add_index "surveys", ["access_code", "survey_version"], name: "surveys_access_code_version_idx", unique: true, using: :btree
-  add_index "surveys", ["api_id"], name: "uq_surveys_api_id", unique: true, using: :btree
+  add_index "surveys", ["access_code", "survey_version"], name: "surveys_access_code_version_idx", unique: true
+  add_index "surveys", ["api_id"], name: "uq_surveys_api_id", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "first_name",             limit: 255
-    t.string   "last_name",              limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "validation_conditions", force: :cascade do |t|
-    t.integer  "validation_id",  limit: 4
-    t.string   "rule_key",       limit: 255
-    t.string   "operator",       limit: 255
-    t.integer  "question_id",    limit: 4
-    t.integer  "answer_id",      limit: 4
+    t.integer  "validation_id"
+    t.string   "rule_key"
+    t.string   "operator"
+    t.integer  "question_id"
+    t.integer  "answer_id"
     t.datetime "datetime_value"
-    t.integer  "integer_value",  limit: 4
-    t.float    "float_value",    limit: 24
-    t.string   "unit",           limit: 255
-    t.text     "text_value",     limit: 65535
-    t.string   "string_value",   limit: 255
-    t.string   "response_other", limit: 255
-    t.string   "regexp",         limit: 255
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.string   "unit"
+    t.text     "text_value"
+    t.string   "string_value"
+    t.string   "response_other"
+    t.string   "regexp"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "validations", force: :cascade do |t|
-    t.integer  "answer_id",  limit: 4
-    t.string   "rule",       limit: 255
-    t.string   "message",    limit: 255
+    t.integer  "answer_id"
+    t.string   "rule"
+    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
