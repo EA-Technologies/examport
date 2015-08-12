@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'setting/index'
+
   devise_for :user
 
   devise_scope :user do
