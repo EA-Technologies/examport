@@ -14,36 +14,24 @@
       </thead>
 
       <tbody>
-        <% @responses.each do |response| %>
+        <% @responses.each do |response_set| %>
           <% count = 0 %>
           <tr>
-            <td><%= response.user.email %></td>
+            <td><%= response_set.user.email %></td>
             <td>T1</td>
             <td>
-                <% res = @res.where(response_set_id: response.id) %>
-                <% res.each do |test| %>
-                <% answer = Answer.find_by_id(test.answer_id) %>
-                    <% correct= test.question.answers.where(is_correct: true).first %>
-                    <%  if answer == correct %>
-                      <% count += 1 %>
-                    <% end %>
-                <% end %>
-              <%= count %>
+              <%= response_set.correct_answers_count %>
             </td>
             <td>
-              <% if count > 4  %>
-                Pass
-              <% else %>
-                Fail
-              <% end %>
+              <%= response_set.result %>
             </td>
-            <td><%= response.started_at.strftime("%m-%d-%Y") %></td>
+            <td><%= response_set.created_at.strftime("%m-%d-%Y") %></td>
             <td><i class="material-icons">mail</i></td>
-            <td><%= link_to "Check Test", response_set_path(response), class: "btn  light-green darken-3 " %></td>
+            <td><%= link_to "Check Test", response_set_path(response_set), class: "btn  light-green darken-3 " %></td>
             <td>
               <p>
                 Download:
-                <%= link_to "PDF", response_set_path(response, format: "pdf") %>
+                <%= link_to "PDF", response_set_path(response_set, format: "pdf"), target: "_blank" %>
               </p>
             </td>
           </tr>
@@ -51,4 +39,4 @@
       </tbody>
     </table>
   </div>
-</div>
+</div>        

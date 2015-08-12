@@ -5,7 +5,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 # Use mysql as the database for Active Record
 # gem 'mysql2'
-gem 'sqlite3', group: :development
+gem 'mysql2', group: :development
 gem 'pg', group: :production
 
 # Use SCSS for stylesheets
@@ -25,8 +25,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem "surveyor", :github => "NUBIC/surveyor", :branch => "master"
-gem 'surveyor_gui'
 gem 'devise'
 gem 'materialize-sass'
 gem 'wicked_pdf', '~> 0.11.0'

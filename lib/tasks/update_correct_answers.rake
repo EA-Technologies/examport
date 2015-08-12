@@ -3,10 +3,11 @@ namespace :exam_portal do
 	desc "Insert questions in database"
   task :insert_questions => :environment do
   	Question.delete_all
+    ResponseSet.delete_all
   	Answer.delete_all
   	question_array = {
 											"Who is the current president of USA?"=> [['Bill Cinton', 'Obamma', 'George Bush', 'Joe'], "Obamma"],
-											"How many stars in USA flag?" => [['30', '40', '50', '60', '62'], '50'],
+											"How many stars in USA flag?" => [['30', '40', '50', '60'], '50'],
 								  		"Who is the current prime minister of malaysia?" => [['Najib Razak','Mahathir Mohamad','Abdul Razak Hussein','Tunku Abdul Rahman'], 'Najib Razak'],
 								  		"Which country occupied Malaysia during World War II?" => [["Japan", "China", "Australia", "Vietnam"], "Japan"],
 								  		"Which is the capital of Malaysia?" => [['Kelang', 'Ambon', 'Kuala Lumpur', 'Dili'], 'Kuala Lumpur'],
@@ -28,18 +29,19 @@ namespace :exam_portal do
 								  	}
 		count = 1
 		question_array.each do |ques, answers|
-			puts ques
-			puts '---------------------'
-			puts answers
-			question = Question.new(text: ques,
-															pick: 'one', 
-															display_order: count,
-															display_type: "default")
-			question.save
-			count += 1
+      puts ques
+      puts '---------------------'
+      puts answers
+      question = Question.new(text: ques,
+                              pick: 'one', 
+                              display_order: count,
+                              display_type: "default")
+      question.save
+      count += 1
 			answers[0].each do |ans|
 				if ans == answers[1]
-					question.answers.create!(text: ans, is_correct: true)
+					answer = question.answers.create!(text: ans)
+          question.update_attributes({correct_answer_id: answer.id})
 				else
 					question.answers.create!(text: ans)
 				end

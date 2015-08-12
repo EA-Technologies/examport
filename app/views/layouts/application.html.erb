@@ -39,17 +39,17 @@
             <% else %>
               <% if current_user %>
                 <% if @questions %>
-                  <div class="col s8 right-align">
+                  <div class="col s8 l9 right-align">
                     <h6>Total Time : 10 minutes</h6>
                     <h6>Remaining Time: <span id="ms_timer" class="yellow lighten-3 center black-text">
                     </span></h6>
                   </div>
-                  <div class="col s3 l2" style="padding-left: 10px;">
+                  <div class="col s3 l2" style="padding-left: 33px;">
                     <h6>Total Questions : <%= @questions.size %></h6>
                     <h6>Remaining Questions: <span class="yellow lighten-3 center black-text" id="remaining_ques"><%= @questions.size %></span></h6>
                 <% end %>
                 </div>
-                <ul id="nav-mobile" class="col s1 l2">
+                <ul id="nav-mobile" class="col s1 l1">
                   <li class="right">
                     <%= link_to "Signout", destroy_user_session_path, method: :delete %>
                   </li>

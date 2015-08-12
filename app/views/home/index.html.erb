@@ -11,7 +11,7 @@
     	</span></h6>
 		</div>
 		<div class="card-panel hoverable">
-		  <h6>Total Questions : <%= @questions.size %></h6>
+		  <h6 id="total_ques" data-total-question="<%= @questions.size %>">Total Questions : <%= @questions.size %></h6>
 		  <h6>Remaining Questions: <span id="remaining_ques"><%= @questions.size %></span></h6>
 		</div>
 	</div>
@@ -83,14 +83,15 @@
 	var responded = [];
 	$("#new_response_set :radio").click(function(){
 		if(this.checked){
-			console.log($("ul#tabs a#" + this.name));
-			if($.inArray( this.name, responded) < 0){
+			var total_question = parseInt($("h6#total_ques").data('total-question'));
+			if($.inArray( parseInt(this.name), responded) < 0){
+				responded.push(parseInt(this.name));
 				$("ul.tabs a#" + this.name).removeClass('blue-grey').addClass('orange');
-			}else{
-				$("ul.tabs a#" + this.name).removeClass('orange').addClass('blue-grey');
 			}
+			var remaining = (total_question - responded.length);
+			$("#remaining_ques").html(remaining);
+			$("#response_set_responded").val(responded);
 		}
-		$("#response_set_responded").val(responded);
 	});
 
 
