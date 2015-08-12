@@ -19,12 +19,11 @@
 	  <ul class="tabs">
 			<% @questions.each_with_index do |question, index| %>
 		    <li class="tab">
-		    	<a href="#question<%= index %>" class="blue-grey white-text question<%= index %>" id="<%= question.id %>"><span><%= index + 1 %></span></a>
+		    	<a href="#question<%= index %>" class="blue-grey white-text question<%= index %>" id="tab_<%= question.id %>"><span><%= index + 1 %></span></a>
 		    </li>
 			<% end %>
 		</ul>
 		<%= form_for @response_set do |f| %>
-			<%= f.hidden_field 'survey_id', value: @survey.id %>
 			<%= f.hidden_field 'responded', value: [] %>
 			<% @questions.each_with_index do |question, index| %>
 		    <div id="question<%= index %>">
@@ -39,7 +38,7 @@
 						<% question.answers.shuffle.each_with_index do |answer, ind| %>
 							<div>
 								<p>
-						      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>", class="response" style="color: #000;" />
+						      <input name="<%= question.id %>" type="radio" id="<%= answer.id %>" class="response" style="color: #000;" />
 						      <label for="<%= answer.id %>" style="color: #000;"><strong>(<%= orderList[ind] %>)</strong>  <%= answer.text %></label>
 						    </p>
 							</div>
@@ -47,11 +46,11 @@
 					</div>
 					<div class="row navigation">
 						<div class="col s6 m6">
-							<a href="#" class="btn navigate previous blue-grey <%= (index > 0) ? '' : 'disabled' %>" id="<%= index - 1 %>">Previous</a>
+							<a href="#" class="btn navigate previous blue-grey <%= (index > 0) ? '' : 'disabled' %>" data-id="<%= index - 1 %>">Previous</a>
 						</div>
 						<div class="col s6 m6 right-align">
 							<% unless question == @questions.last %>
-								<a href="#" id="<%= index + 1 %>" class="btn navigate blue-grey next">Next</a>
+								<a href="#" data-id="<%= index + 1 %>" class="btn navigate blue-grey next">Next</a>
 							<% else %>
 								<%= f.submit 'Submit Test',id: "sub_test", class: "btn btn-large green submit", data: {:confirm => "Are you sure you want to submit the test"} %>
 							<% end %>
@@ -76,7 +75,7 @@
 
 
 	$(".navigation .navigate").click(function(){
-		var tabId = this.id;
+		var tabId = $(this).data("id");
 		$(".question" + tabId).click();
 	});
 
@@ -86,7 +85,7 @@
 			var total_question = parseInt($("h6#total_ques").data('total-question'));
 			if($.inArray( parseInt(this.name), responded) < 0){
 				responded.push(parseInt(this.name));
-				$("ul.tabs a#" + this.name).removeClass('blue-grey').addClass('orange');
+				$("ul.tabs a#tab_" + this.name).removeClass('blue-grey').addClass('orange');
 			}
 			var remaining = (total_question - responded.length);
 			$("#remaining_ques").html(remaining);

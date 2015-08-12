@@ -40,8 +40,7 @@ namespace :exam_portal do
       count += 1
 			answers[0].each do |ans|
 				if ans == answers[1]
-					answer = question.answers.create!(text: ans)
-          question.update_attributes({correct_answer_id: answer.id})
+					answer = question.answers.create!(text: ans, is_correct: true)
 				else
 					question.answers.create!(text: ans)
 				end

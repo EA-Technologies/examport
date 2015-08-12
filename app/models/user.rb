@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :surveys
+  has_many :response_sets
   # before_action :authenticate_user!
 end

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'setting/index'
-
   devise_for :user
 
   devise_scope :user do
@@ -9,9 +7,13 @@ Rails.application.routes.draw do
   end
 
   resources :response_sets
+  resources :settings
+
   get "home/index"
   get "home/show"
 
+  get "edit_settings" => 'settings#edit_settings'
+  post "update_settings" => 'settings#update_settings'
   # mount Surveyor::Engine => "/surveys", :as => "surveyor"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

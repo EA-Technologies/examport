@@ -10,6 +10,7 @@
           <th>Date</th>
           <th>Share</th>
           <th data-field="name" style="padding-left:40px;">Check Test</th>
+          <th>Download PDF</th>
         </tr>
       </thead>
 
@@ -20,7 +21,7 @@
             <td><%= response_set.user.email %></td>
             <td>T1</td>
             <td>
-              <%= response_set.correct_answers_count %>
+              <%= response_set.marks_received %>
             </td>
             <td>
               <%= response_set.result %>
@@ -29,10 +30,9 @@
             <td><i class="material-icons">mail</i></td>
             <td><%= link_to "Check Test", response_set_path(response_set), class: "btn  light-green darken-3 " %></td>
             <td>
-              <p>
-                Download:
-                <%= link_to "PDF", response_set_path(response_set, format: "pdf"), target: "_blank" %>
-              </p>
+              <%= link_to response_set_path(response_set, format: "pdf"), target: "_blank" do %>
+                <i class="material-icons dp48 green-text">description</i>
+              <% end %>
             </td>
           </tr>
         <% end %>

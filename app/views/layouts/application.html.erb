@@ -21,12 +21,12 @@
               </a>
             </div>
             <% if current_user && current_user.email == "admin@admin.com" %>
-              <ul id="nav-mobile" class="col l9 s9">
+              <ul id="nav-mobile" class="col l9 s8">
                 <li class="right">
-                  <%= link_to "Setting", setting_index_path %></li>
+                  <%= link_to "Setting", settings_path %></li>
                 </li>
               </ul>
-              <ul id="nav-mobile" class="col l2 s1" style="padding-right: 52px;">
+              <ul id="nav-mobile" class="col l2 s3" style="padding-right: 52px;">
                 <li class="right">
                   <%= link_to "Check Test", response_sets_path %></li>
                 </li>

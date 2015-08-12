@@ -32,10 +32,9 @@ class ResponseSetsController < ApplicationController
   # POST /surveys
   # POST /surveys.json
   def create
-    @response_set = ResponseSet.create(user: current_user, survey_id: params[:response_set][:survey_id]
-)
+    @response_set = current_user.response_sets.create
     params[:response_set].each do |question, answer|
-      unless(question == "survey_id")
+      unless(question == "survey_id" || question == "responded")
         response = @response_set.responses.build(question_id: question, answer_id: answer)
         response.save(validate: false)
       end

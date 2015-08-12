@@ -1,5 +1,4 @@
 class ResponseSet < ActiveRecord::Base
-  belongs_to :survey
   belongs_to :user
   has_many :responses, dependent: :destroy
   accepts_nested_attributes_for :responses, allow_destroy: true
@@ -21,6 +20,21 @@ class ResponseSet < ActiveRecord::Base
   end
 
   def result
-    (correct_answers_count >= 4) ? "Pass" : "Fail"
+    (marks_received >= passing_marks) ? "Pass" : "Fail"
   end
+
+  def marks_received
+    (correct_answers_count * mark_per_question)
+  end
+
+  def passing_marks
+    setting = Setting.where(name: "passing_marks").first
+    setting.value.to_i
+  end
+
+  def mark_per_question
+    setting = Setting.where(name: "mark_per_question").first
+    setting.value.to_i
+  end
+
 end

@@ -1,0 +1,27 @@
+<div class="padding">
+  <div class="col s10 offset-s1">
+    <h4>Settings</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Setting Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @settings.each do |setting| %>
+          <tr>
+            <td><%= setting.name.humanize %></td>
+            <td><%= setting.value %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="right">
+      <%= link_to "Edit Settings", edit_settings_path, class: "btn green btn-large" %>
+    </div>
+  </div>
+</div>
+
