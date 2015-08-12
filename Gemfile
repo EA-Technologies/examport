@@ -5,7 +5,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 # Use mysql as the database for Active Record
 # gem 'mysql2'
-gem 'mysql2', group: :development
+gem 'sqlite3', group: :development
 gem 'pg', group: :production
 
 # Use SCSS for stylesheets
